@@ -1,1 +1,37 @@
-<p>login works!</p>
+<section class="w-screen h-screen flex justify-center items-center">
+  <div class="border bg-slate-200 p-5 rounded-md shadow-lg w-80">
+    <p class="text-red-500">{{ error }}</p>
+    <h1 class="text-center font-bold text-lg mb-5">Login</h1>
+    <form
+      [formGroup]="applyForm"
+      (submit)="login()"
+      class="flex flex-col gap-6"
+    >
+      <div>
+        <label for="username">Username</label>
+        <input
+          id="username"
+          class="border block rounded-md outline-none p-1 w-full"
+          type="text"
+          formControlName="username"
+        />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input
+          id="password"
+          class="border block rounded-md outline-none p-1 w-full"
+          type="text"
+          formControlName="password"
+        />
+      </div>
+
+      <button
+        class="bg-blue-500 w-full p-1 rounded-md hover:bg-blue-400 text-white font-bold"
+      >
+        SUBMIT
+      </button>
+    </form>
+  </div>
+</section>
