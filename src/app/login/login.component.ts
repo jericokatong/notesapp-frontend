@@ -22,7 +22,7 @@ export class LoginComponent {
 
   constructor(
     private http: HttpClient,
-    private store: Store<GlobalState>,
+    private store: Store<{ global: GlobalState }>,
     private router: Router
   ) {}
 
@@ -31,15 +31,22 @@ export class LoginComponent {
       .post('http://localhost:3000/authentications', this.applyForm.value)
       .subscribe({
         next: (response: any) => {
-          // save access token to global state
+          // save user identify to global state
           this.store.dispatch(
             login({
               userId: response.data.userId,
+              fullname: response.data.fullname,
               username: response.data.username,
               accessToken: response.data.accessToken,
               refreshToken: response.data.refreshToken,
             })
           );
+
+          // save refreshToken to localStorage
+          localStorage.setItem('refreshToken', response.data.refreshToken);
+
+          // save id user to localStorage
+          localStorage.setItem('userId', response.data.userId);
 
           // reset form input
           this.applyForm.reset();

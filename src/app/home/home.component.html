@@ -1,1 +1,12 @@
-<p>home works!</p>
+<app-header></app-header>
+<section class="px-3">
+  <div class="w-full flex justify-between mb-7">
+    <h1 class="font-bold text-lg">Welcome, {{ fullname }}</h1>
+    <button
+      class="bg-sky-500 p-1 px-4 rounded-md hover:bg-sky-400 font-bold text-white"
+    >
+      Create Note
+    </button>
+  </div>
+  <app-note *ngFor="let note of noteList" [note]="note"></app-note>
+</section>

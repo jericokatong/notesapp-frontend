@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { login } from './global.actions';
+import { login, logout } from './global.actions';
 
 export interface GlobalState {
   userId: string;
+  fullname: string;
   username: string;
   accessToken: string | null;
   refreshToken: string | null;
@@ -10,6 +11,7 @@ export interface GlobalState {
 
 export const initialState: GlobalState = {
   userId: '',
+  fullname: '',
   username: '',
   accessToken: null,
   refreshToken: null,
@@ -17,11 +19,22 @@ export const initialState: GlobalState = {
 
 export const globalReducer = createReducer(
   initialState,
-  on(login, (state, { userId, username, accessToken, refreshToken }) => ({
-    ...state,
-    userId,
-    username,
-    accessToken,
-    refreshToken,
+  on(
+    login,
+    (state, { userId, fullname, username, accessToken, refreshToken }) => ({
+      ...state,
+      userId,
+      fullname,
+      username,
+      accessToken,
+      refreshToken,
+    })
+  ),
+  on(logout, () => ({
+    userId: '',
+    fullname: '',
+    username: '',
+    accessToken: null,
+    refreshToken: null,
   }))
 );
