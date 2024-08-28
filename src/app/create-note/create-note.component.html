@@ -1,0 +1,46 @@
+<section class="h-screen w-full flex justify-center items-center">
+  <form
+    [formGroup]="noteForm"
+    (ngSubmit)="onSubmit()"
+    class="border bg-slate-300 w-96 px-5 py-3 flex flex-col gap-4"
+  >
+    <div class="flex flex-col gap-4">
+      <div class="">
+        <label for="title">Title:</label>
+        <input
+          id="title"
+          formControlName="title"
+          placeholder="Enter note title"
+          class="w-full"
+        />
+      </div>
+
+      <div>
+        <label for="body">Body:</label>
+        <textarea
+          id="body"
+          formControlName="body"
+          placeholder="Enter note body"
+          class="w-full"
+        ></textarea>
+      </div>
+
+      <div class="border">
+        <div formArrayName="tags">
+          <label>Tags:</label>
+          <div *ngFor="let tag of tags.controls; let i = index">
+            <input [formControlName]="i" placeholder="Enter tag" />
+            <button type="button" (click)="removeTag(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" (click)="addTag()">Add Tag</button>
+      </div>
+    </div>
+
+    <button
+      class="bg-blue-500 w-full p-1 rounded-md hover:bg-blue-400 text-white font-bold"
+    >
+      SUBMIT
+    </button>
+  </form>
+</section>

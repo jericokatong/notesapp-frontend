@@ -4,6 +4,7 @@ import { GlobalState } from '../global.reducer';
 import { Store } from '@ngrx/store';
 import { logout } from '../global.actions';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,7 @@ export class HeaderComponent {
   logout() {
     const refreshToken: string = localStorage.getItem('refreshToken')!;
     this.http
-      .delete('http://localhost:3000/authentications', {
+      .delete(`${environment.apiUrl}/authentications`, {
         body: {
           refreshToken,
         },

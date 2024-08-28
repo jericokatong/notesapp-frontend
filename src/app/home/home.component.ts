@@ -7,6 +7,8 @@ import { GlobalState } from '../global.reducer';
 import { selectAccessToken, selectFullname } from '../global.selector';
 import { take } from 'rxjs';
 import { NgFor } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 interface Note {
   id: string;
@@ -20,7 +22,7 @@ interface Note {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgFor, HeaderComponent, NoteComponent],
+  imports: [NgFor, RouterLink, HeaderComponent, NoteComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -58,7 +60,7 @@ export class HomeComponent {
     });
 
     this.http
-      .get('http://localhost:3000/notes', {
+      .get(`${environment.apiUrl}/notes`, {
         headers,
       })
       .subscribe({

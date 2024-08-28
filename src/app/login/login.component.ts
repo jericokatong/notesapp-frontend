@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { GlobalState } from '../global.reducer';
 import { login } from '../global.actions';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent {
 
   login() {
     this.http
-      .post('http://localhost:3000/authentications', this.applyForm.value)
+      .post(`${environment.apiUrl}/authentications`, this.applyForm.value)
       .subscribe({
         next: (response: any) => {
           // save user identify to global state

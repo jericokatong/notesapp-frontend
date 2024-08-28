@@ -1,0 +1,21 @@
+<section class="h-screen w-full flex justify-center items-center">
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    class="border bg-slate-300 w-96 px-5 py-3 flex flex-col gap-4"
+  >
+    <div class="mb-3">
+      <p>Current Collaborators:</p>
+      <p *ngFor="let collaborator of currentCollaborators">
+        - {{ collaborator.fullname }}
+      </p>
+    </div>
+    <label for="userSelect">Select Collaborator to add:</label>
+    <select id="userSelect" formControlName="selectedUser" class="form-select">
+      <option *ngFor="let user of users" [value]="user.id">
+        {{ user.fullname }}
+      </option>
+    </select>
+    <button type="submit" class="bg-sky-500 py-1">Submit</button>
+  </form>
+</section>
